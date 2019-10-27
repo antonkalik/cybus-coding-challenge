@@ -1,7 +1,10 @@
 import { createReducer } from '../utilities';
-import { UPDATE_STORE } from './constants';
+import { RESET_STORE, UPDATE_STORE } from './types';
 
-const initialState = {};
+const initialState = {
+  isLoggedIn: false,
+  userName: '',
+};
 
 export default createReducer(initialState, {
   [UPDATE_STORE]: (state, { payload }) => {
@@ -9,5 +12,8 @@ export default createReducer(initialState, {
       ...state,
       ...payload,
     };
+  },
+  [RESET_STORE]: () => {
+    return initialState;
   },
 });
