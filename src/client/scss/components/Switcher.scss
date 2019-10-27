@@ -1,15 +1,28 @@
 .switcher {
   border-radius: 8px;
+  width: 100%;
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 38px;
   > .tab {
-    border-radius: 8px;
+    flex: 1;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-bottom: none;
     min-width: 100px;
     text-align: center;
     margin-right: 4px;
     padding: 10px;
     cursor: pointer;
-    &:hover, &.active {
-      background: red;
+    &:hover,
+    &.active {
+      background: $light;
     }
+  }
+  .search-tab {
+    flex: 4;
+    padding-right: 10px;
+    text-align: right;
   }
 }

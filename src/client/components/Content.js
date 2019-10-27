@@ -2,14 +2,9 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { actionUpdateStore } from '../redux/actions';
 import { connect } from 'react-redux';
-import { Switcher } from '../components';
 
 function Content() {
-  return (
-    <div className="content">
-      <Switcher items={['images', 'containers']} />
-    </div>
-  );
+  return <div className="content">content</div>;
 }
 
 const mapStateToProps = store => {

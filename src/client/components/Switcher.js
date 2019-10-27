@@ -23,6 +23,7 @@ function Switcher({ items, store, updateStore, history }) {
           </div>
         );
       })}
+      <div className="search-tab">search</div>
     </div>
   );
 }

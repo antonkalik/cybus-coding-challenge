@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionUpdateStore } from '../redux/actions';
-import { Header, Content } from '../components';
+import { Content, Switcher } from '../components';
 
 export function Home({ updateStore, location }) {
   const currentTab = location.pathname.replace(/^\/+/, '');
@@ -14,7 +14,7 @@ export function Home({ updateStore, location }) {
 
   return (
     <div className="home">
-      <Header />
+      <Switcher items={['images', 'containers']} />
       <Content />
     </div>
   );
