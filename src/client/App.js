@@ -12,7 +12,7 @@ function App({ updateStore, store }) {
   useEffect(() => {
     updateStore({
       isLoggedIn: LocalStorage.getItem('isLoggedIn'),
-      userName: LocalStorage.getItem('userName'),
+      userName: LocalStorage.getItem('userName') || '',
     });
   }, [updateStore]);
 

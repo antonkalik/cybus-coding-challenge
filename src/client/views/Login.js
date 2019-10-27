@@ -25,6 +25,7 @@ function Login({ history, updateStore, store }) {
         <h1>Hello, please, enter your username and press login.</h1>
         <Input
           error={errorMessage}
+          pattern="[A-Za-z0-9@-_.]*"
           placeholder="Your username"
           value={store.userName}
           onChange={e => {
