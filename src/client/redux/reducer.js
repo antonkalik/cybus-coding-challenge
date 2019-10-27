@@ -4,6 +4,7 @@ import { RESET_STORE, UPDATE_STORE } from './types';
 const initialState = {
   isLoggedIn: false,
   userName: '',
+  currentTab: 'images',
 };
 
 export default createReducer(initialState, {

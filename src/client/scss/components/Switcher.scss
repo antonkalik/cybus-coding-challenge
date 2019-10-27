@@ -1,0 +1,15 @@
+.switcher {
+  border-radius: 8px;
+  display: flex;
+  > .tab {
+    border-radius: 8px;
+    min-width: 100px;
+    text-align: center;
+    margin-right: 4px;
+    padding: 10px;
+    cursor: pointer;
+    &:hover, &.active {
+      background: red;
+    }
+  }
+}
