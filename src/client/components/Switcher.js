@@ -1,11 +1,13 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom';
 import { actionUpdateStore } from '../redux/actions';
 import { connect } from 'react-redux';
 
-function Switcher({ items, store, updateStore }) {
+function Switcher({ items, store, updateStore, history }) {
   const chooseActive = item => () => {
     updateStore({ currentTab: item });
+    history.push(`/${item}`);
   };
 
   return (
@@ -38,4 +40,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Switcher);
+)(withRouter(Switcher));

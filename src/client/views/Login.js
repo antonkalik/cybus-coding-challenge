@@ -14,7 +14,7 @@ function Login({ history, updateStore, store }) {
       LocalStorage.setItem('isLoggedIn', true);
       LocalStorage.setItem('userName', store.userName);
       updateStore({ isLoggedIn: true });
-      history.push('/');
+      history.push('/images');
     } else {
       setErrorMessage("Field can't to be empty and length more then 3 letter.");
     }

@@ -2,15 +2,15 @@ import React, { useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionUpdateStore } from '../redux/actions';
-import { FetchData } from '../api';
 import { Header, Content } from '../components';
 
-export function Home({ updateStore }) {
+export function Home({ updateStore, location }) {
+  const currentTab = location.pathname.replace(/^\/+/, '');
   useEffect(() => {
-    FetchData.getLatestData().then(res => {
-      updateStore(res);
+    updateStore({
+      currentTab,
     });
-  }, [updateStore]);
+  }, [updateStore, currentTab]);
 
   return (
     <div className="home">
