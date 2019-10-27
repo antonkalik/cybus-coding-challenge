@@ -1,6 +1,17 @@
 .navigation {
-  background: gray;
+  background: $light;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid $black;
   a.active {
     color: red;
+  }
+  .logotype {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    cursor: pointer;
   }
 }

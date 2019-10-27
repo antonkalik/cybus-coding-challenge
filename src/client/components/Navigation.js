@@ -5,6 +5,7 @@ import { LocalStorage } from '../storage';
 import { bindActionCreators } from 'redux';
 import { actionResetStore } from '../redux/actions';
 import { connect } from 'react-redux';
+import logotype from '../res/logotype.svg';
 
 function Navigation({ store, resetStore, history }) {
   const isLoggedIn = store.isLoggedIn && LocalStorage.getItem('isLoggedIn');
@@ -16,22 +17,26 @@ function Navigation({ store, resetStore, history }) {
     history.push('/');
   };
 
+  const login = e => {
+    e.preventDefault();
+    history.push('/login');
+  };
+
   return (
     <div className="navigation">
-      {isLoggedIn && (
-        <NavLink exact to="/">
-          Dashboard
-        </NavLink>
-      )}
-      <NavLink exact to="/about">
-        About
-      </NavLink>
+      <div className="logotype">
+        <img
+          src={logotype}
+          onClick={() => {
+            history.push('/');
+          }}
+        />
+        <p>Cybedock</p>
+      </div>
       {isLoggedIn ? (
         <Button onClick={logout} text="Logout" />
       ) : (
-        <NavLink exact to="/login">
-          Login
-        </NavLink>
+        <Button onClick={login} text="Login" />
       )}
     </div>
   );
