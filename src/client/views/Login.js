@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionUpdateStore } from '../redux/actions';
@@ -7,22 +7,32 @@ import { LocalStorage } from '../storage';
 import { Button, Input } from '../components';
 
 function Login({ history, updateStore, store }) {
+  const [errorMessage, setErrorMessage] = useState('');
+
   const onClick = () => {
-    LocalStorage.setItem('isLoggedIn', true);
-    LocalStorage.setItem('userName', store.userName);
-    updateStore({ isLoggedIn: true });
-    history.push('/');
+    if (store.userName && store.userName.length > 3) {
+      LocalStorage.setItem('isLoggedIn', true);
+      LocalStorage.setItem('userName', store.userName);
+      updateStore({ isLoggedIn: true });
+      history.push('/');
+    } else {
+      setErrorMessage("Field can't to be empty and length more then 3 letter.");
+    }
   };
   return (
     <div className="login">
-      <h1>Hello, please, enter your username and press login.</h1>
-      <Input
-        value={store.userName}
-        onChange={e => {
-          updateStore({ userName: e.target.value });
-        }}
-      />
-      <Button onClick={onClick} text="Login" />
+      <div>
+        <h1>Hello, please, enter your username and press login.</h1>
+        <Input
+          error={errorMessage}
+          placeholder="Your username"
+          value={store.userName}
+          onChange={e => {
+            updateStore({ userName: e.target.value });
+          }}
+        />
+        <Button onClick={onClick} text="Login" />
+      </div>
     </div>
   );
 }

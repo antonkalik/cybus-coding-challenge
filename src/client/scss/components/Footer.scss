@@ -1,4 +1,11 @@
 .footer {
+  border-top: 2px solid $black;
   padding: 10px;
-  background: $light
+  background: $light;
+  display: flex;
+  justify-content: space-between;
+  p, a {
+    font-size: 14px;
+    color: $dark-gray
+  }
 }

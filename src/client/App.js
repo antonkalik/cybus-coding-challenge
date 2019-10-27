@@ -8,10 +8,13 @@ import { connect } from 'react-redux';
 import { LocalStorage } from './storage';
 import { PrivateRoute } from './hocs';
 
-function App({ setLoginStatus, store }) {
+function App({ updateStore, store }) {
   useEffect(() => {
-    setLoginStatus({ isLoggedIn: LocalStorage.getItem('isLoggedIn') });
-  }, [setLoginStatus]);
+    updateStore({
+      isLoggedIn: LocalStorage.getItem('isLoggedIn'),
+      userName: LocalStorage.getItem('userName'),
+    });
+  }, [updateStore]);
 
   return (
     <Router>
@@ -39,7 +42,7 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setLoginStatus: bindActionCreators(actionUpdateStore, dispatch),
+    updateStore: bindActionCreators(actionUpdateStore, dispatch),
   };
 };
 

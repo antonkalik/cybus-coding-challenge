@@ -1,10 +1,12 @@
 // commons
 @import 'reset';
 @import 'variables';
+@import 'mixins';
 @import 'commons';
 
 // views
 @import 'views/Home';
+@import 'views/Login';
 
 // components
 @import 'components/Header';
@@ -12,3 +14,4 @@
 @import 'components/Footer';
 @import 'components/Navigation';
 @import 'components/Button';
+@import "components/Input";
