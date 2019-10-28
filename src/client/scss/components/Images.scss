@@ -1,5 +1,17 @@
 .images {
+  padding: 10px;
   .image {
-    border: 2px solid green;
+    display: flex;
+    margin: 10px 0;
+    border: 2px solid $black;
+    min-height: 50px;
+    border-radius: 8px;
+    > div {
+      padding: 10px;
+      flex: 1;
+      &:last-child {
+        text-align: right;
+      }
+    }
   }
 }

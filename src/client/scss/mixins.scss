@@ -9,3 +9,9 @@
   -moz-animation: $place $speed infinite ease-in-out;
   animation: $place $speed infinite ease-in-out;
 }
+
+@mixin button-shift {
+  top: 2px;
+  left: 2px;
+  box-shadow: none;
+}

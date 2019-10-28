@@ -9,15 +9,17 @@
     flex: 1;
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
-    border-bottom: none;
     min-width: 100px;
     text-align: center;
     margin-right: 4px;
     padding: 10px;
     cursor: pointer;
+    border: 2px solid $black;
+    border-bottom: none;
     &:hover,
     &.active {
-      background: $light;
+      background: $black;
+      color: $light
     }
   }
   .search-tab {

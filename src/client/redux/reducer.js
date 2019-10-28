@@ -5,7 +5,7 @@ const initialState = {
   isLoggedIn: false,
   userName: '',
   currentTab: 'images',
-  images: [2],
+  images: [],
   containers: [],
 };
 

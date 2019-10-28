@@ -1,9 +1,25 @@
-button {
-  @include lisa-style;
-  background: white;
-  height: 38px;
-  padding: 4px 20px;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
+.button {
+  position: relative;
+  min-height: 38px;
+  min-width: 120px;
+  button {
+    position: absolute;
+    min-height: 38px;
+    min-width: 120px;
+    @include lisa-style;
+    box-shadow: 3px 3px black;
+    background: white;
+    padding: 4px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    &:hover {
+      @include button-shift;
+    }
+  }
+  &.loading {
+    button {
+      @include button-shift;
+    }
+  }
 }
