@@ -3,3 +3,9 @@
   border: 2px solid $black;
   background: $light;
 }
+
+@mixin easeInOut($place, $speed) {
+  -webkit-animation: $place $speed infinite ease-in-out;
+  -moz-animation: $place $speed infinite ease-in-out;
+  animation: $place $speed infinite ease-in-out;
+}

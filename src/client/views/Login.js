@@ -3,22 +3,38 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionUpdateStore } from '../redux/actions';
 import { withRouter } from 'react-router';
-import { LocalStorage } from '../storage';
+import FakeDB, { LocalStorage } from '../storage';
 import { Button, Input } from '../components';
+import { debounce } from '../utilities'
 
-function Login({ history, updateStore, store }) {
+function Login({ updateStore, store, history }) {
+  const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const onClick = () => {
+  const onClick = e => {
+    e.preventDefault();
+    setLoading(true);
     if (store.userName && store.userName.length > 3) {
-      LocalStorage.setItem('isLoggedIn', true);
-      LocalStorage.setItem('userName', store.userName);
-      updateStore({ isLoggedIn: true });
-      history.push('/images');
+      debounce(() => {
+        LocalStorage.setItem('isLoggedIn', true);
+        FakeDB.save('userName', store.userName);
+        setLoading(false);
+        updateStore({ isLoggedIn: true });
+        history.push('/images');
+      });
     } else {
-      setErrorMessage("Field can't to be empty and length more then 3 letter.");
+      debounce(() => {
+        setErrorMessage("Field can't to be empty and length more then 3 letter.");
+        setLoading(false);
+      });
     }
   };
+
+  const onChange = ({ target }) => {
+    setErrorMessage('');
+    updateStore({ userName: target.value });
+  };
+
   return (
     <div className="login">
       <div>
@@ -28,11 +44,9 @@ function Login({ history, updateStore, store }) {
           pattern="[A-Za-z0-9@-_.]*"
           placeholder="Your username"
           value={store.userName}
-          onChange={e => {
-            updateStore({ userName: e.target.value });
-          }}
+          onChange={onChange}
         />
-        <Button onClick={onClick} text="Login" />
+        <Button loading={loading} onClick={onClick} text="Login" />
       </div>
     </div>
   );

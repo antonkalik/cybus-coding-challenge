@@ -3,8 +3,17 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionUpdateStore } from '../redux/actions';
 import { Content, Switcher } from '../components';
+import FakeDB from '../storage';
 
-export function Home({ updateStore, location }) {
+export function Home({ updateStore, location, history }) {
+  useEffect(() => {
+    const userName = FakeDB.findByKey('userName');
+    if (!userName) {
+      FakeDB.drop();
+      history.push('/');
+    }
+  }, [history]);
+
   const currentTab = location.pathname.replace(/^\/+/, '');
   useEffect(() => {
     updateStore({
@@ -12,9 +21,11 @@ export function Home({ updateStore, location }) {
     });
   }, [updateStore, currentTab]);
 
+  const items = ['images', 'containers'];
+
   return (
     <div className="home">
-      <Switcher items={['images', 'containers']} />
+      <Switcher items={items} />
       <Content />
     </div>
   );

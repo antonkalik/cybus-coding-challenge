@@ -3,11 +3,13 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { actionUpdateStore } from '../redux/actions';
 import { connect } from 'react-redux';
+import FakeDB from '../storage';
 
 function Switcher({ items, store, updateStore, history }) {
   const chooseActive = item => () => {
     updateStore({ currentTab: item });
     history.push(`/${item}`);
+    FakeDB.save('my-item', { someData: { additional: 'long', age: 9 } });
   };
 
   return (

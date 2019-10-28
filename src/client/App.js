@@ -5,12 +5,16 @@ import { Navigation, Footer } from './components';
 import { bindActionCreators } from 'redux';
 import { actionUpdateStore } from './redux/actions';
 import { connect } from 'react-redux';
-import { LocalStorage } from './storage';
+import FakeDB, { LocalStorage } from './storage';
 import { PrivateRoute } from './hocs';
 
 function App({ updateStore }) {
   const isLoggedIn = LocalStorage.getItem('isLoggedIn');
-  const userName = LocalStorage.getItem('userName') || '';
+  const userName = FakeDB.findByKey('userName');
+  useEffect(() => {
+    FakeDB.init();
+  }, []);
+
   useEffect(() => {
     updateStore({
       isLoggedIn,
@@ -23,9 +27,13 @@ function App({ updateStore }) {
       <Navigation />
       <div className="view">
         <Switch>
-          <PrivateRoute path="/" exact component={Home} />
-          <PrivateRoute path="/images" exact component={Home} />
-          <PrivateRoute path="/containers" exact component={Home} />
+          <Route
+            exact
+            path="/"
+            render={() => (isLoggedIn ? <Redirect to="/images" /> : <Login />)}
+          />
+          <PrivateRoute exact path="/images" component={Home} />
+          <PrivateRoute exact path="/containers" component={Home} />
           <Route path="/login" render={() => (isLoggedIn ? <Redirect to="/" /> : <Login />)} />
           <Route path="/about" component={About} />
           <Route component={NotFound} />

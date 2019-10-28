@@ -25,13 +25,13 @@ function Navigation({ store, resetStore, history }) {
 
   return (
     <div className="navigation">
-      <div className="logotype">
-        <img
-          src={logotype}
-          onClick={() => {
-            history.push('/');
-          }}
-        />
+      <div
+        onClick={() => {
+          history.push('/');
+        }}
+        className="logotype"
+      >
+        <img src={logotype} />
         <p>Cybusdock</p>
       </div>
       {isLoggedIn ? (

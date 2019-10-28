@@ -7,3 +7,7 @@ export const createReducer = (initialState, funcMap) => {
     return handler ? handler(newState, action, ...rest) : newState;
   };
 };
+
+export const debounce = (fn, time = 500) => {
+  setTimeout(fn, time);
+};
