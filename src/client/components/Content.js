@@ -1,5 +1,5 @@
-import React from 'react';
-import { Header } from '.';
+import React, { useEffect } from 'react';
+
 import { bindActionCreators } from 'redux';
 import { actionUpdateStore } from '../redux/actions';
 import { connect } from 'react-redux';
@@ -13,7 +13,11 @@ function Content({ store, currentTab }) {
   return (
     <div className="content">
       <div className="table">
-        <Header items={headers[currentTab]} />
+        <div className="header">
+          {headers[currentTab].map(it => {
+            return <div key={it}>{it}</div>;
+          })}
+        </div>
         {store[currentTab].map(it => {
           return (
             <div className="row" key={it.id}>

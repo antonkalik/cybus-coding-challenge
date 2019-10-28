@@ -14,7 +14,15 @@ a {
 
 p, h1, h2, h3, h4, h5, a, div {
   font-family: 'Roboto', sans-serif;
+}
+
+p, a, div {
   font-size: 14px;
+}
+
+h1 {
+  font-size: 18px;
+  font-weight: 500;
 }
 
 #root {

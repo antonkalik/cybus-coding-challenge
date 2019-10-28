@@ -27,7 +27,10 @@
   }
   .search-tab {
     flex: 4;
-    padding-right: 10px;
-    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    div:last-child {
+      margin-left: 10px;
+    }
   }
 }

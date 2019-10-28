@@ -1,12 +1,25 @@
 .content {
-  border-radius: 0 8px 8px 8px;
-  background: $light;
+  border-radius: 0 10px 10px 10px;
+  background: none;
+  border: 2px solid $black;
   .table {
-    padding: 10px;
+    padding: 10px 10px 5px 10px;
+    .header {
+      display: flex;
+      > div {
+        flex: 1;
+        color: lighten($black, 30);
+        &:last-child {
+          text-align: right;
+        }
+        padding: 10px;
+      }
+    }
     .row {
       display: flex;
       margin: 10px 0;
       border: 2px solid $black;
+      background: $light;
       box-shadow: 2px 2px black;
       min-height: 50px;
       border-radius: 8px;

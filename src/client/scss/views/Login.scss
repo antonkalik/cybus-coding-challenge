@@ -13,15 +13,16 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 150px;
+    min-height: 140px;
     border-radius: 4px;
     border: 2px solid $black;
+    box-shadow: 2px 2px $black;
     background: $light;
     flex-direction: column;
-    padding: 50px;
+    padding: 30px;
     > .input {
       input {
-        width: 350px;
+        width: 250px;
       }
     }
   }

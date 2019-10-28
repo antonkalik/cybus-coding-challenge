@@ -11,3 +11,6 @@ export const createReducer = (initialState, funcMap) => {
 export const debounce = (fn, time = 500) => {
   setTimeout(fn, time);
 };
+
+export const searching = (data, query) =>
+  data.filter(item => Object.values(item).find(val => val === query));

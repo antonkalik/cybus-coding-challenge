@@ -15,7 +15,9 @@ function App({ updateStore }) {
   useEffect(() => {
     FakeDB.init()
       .then(({ data }) => {
-        updateStore({ ...data, isLoggedIn });
+        const { userName, ...rest } = data;
+        const updateRest = isLoggedIn ? {} : rest;
+        updateStore({ ...updateRest, userName, isLoggedIn });
       })
       .catch(e => console.error(e));
   }, []);

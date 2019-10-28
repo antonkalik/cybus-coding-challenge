@@ -7,6 +7,7 @@ const initialState = {
   currentTab: 'images',
   images: [],
   containers: [],
+  search: '',
 };
 
 export default createReducer(initialState, {
