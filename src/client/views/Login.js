@@ -1,23 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionUpdateStore } from '../redux/actions';
 import { withRouter } from 'react-router';
-import FakeDB, { LocalStorage } from '../storage';
+import { LocalStorage } from '../storage';
+import FakeDB from '../db';
 import { Button, Input } from '../components';
-import { debounce } from '../utilities'
+import { debounce } from '../utilities';
 
 function Login({ updateStore, store, history }) {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
+  // handleKeyPress = e => {
+  //   if (e.key === 'Enter') {
+  //     this.login();
+  //   }
+  // }
+  //
+  // useEffect(() => {
+  //   document.addEventListener('keypress', handleKeyPress);
+  //   return () => {
+  //     document.removeEventListener('keypress', handleKeyPress)
+  //   }
+  // }, []);
+
   const onClick = e => {
     e.preventDefault();
     setLoading(true);
     if (store.userName && store.userName.length > 3) {
-      debounce(() => {
+      debounce(async () => {
         LocalStorage.setItem('isLoggedIn', true);
-        FakeDB.save('userName', store.userName);
+        await FakeDB.save('userName', store.userName);
         setLoading(false);
         updateStore({ isLoggedIn: true });
         history.push('/images');

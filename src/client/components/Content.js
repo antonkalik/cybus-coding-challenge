@@ -1,23 +1,13 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { actionUpdateStore } from '../redux/actions';
-import { connect } from 'react-redux';
+import { Images, Containers } from '.';
 
-function Content() {
-  return <div className="content">content</div>;
+function Content({ currentTab }) {
+  const tabContent = {
+    images: () => <Images />,
+    containers: () => <Containers />,
+  };
+
+  return <div className="content">{tabContent[currentTab]()}</div>;
 }
 
-const mapStateToProps = store => {
-  return { store };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    updateStore: bindActionCreators(actionUpdateStore, dispatch),
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Content);
+export default Content;

@@ -5,6 +5,8 @@ const initialState = {
   isLoggedIn: false,
   userName: '',
   currentTab: 'images',
+  images: [2],
+  containers: [],
 };
 
 export default createReducer(initialState, {

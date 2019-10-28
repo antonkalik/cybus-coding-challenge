@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionUpdateStore } from '../redux/actions';
 import { Content, Switcher } from '../components';
-import FakeDB from '../storage';
+import FakeDB from '../db';
 
 export function Home({ updateStore, location, history }) {
   useEffect(() => {
@@ -26,10 +26,14 @@ export function Home({ updateStore, location, history }) {
   return (
     <div className="home">
       <Switcher items={items} />
-      <Content />
+      <Content currentTab={currentTab} />
     </div>
   );
 }
+
+const mapStateToProps = ({ currentTab }) => {
+  return { currentTab };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -38,6 +42,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Home);
