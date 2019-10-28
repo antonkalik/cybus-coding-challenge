@@ -22,5 +22,41 @@ export default {
       size: '903MB',
     },
   ],
-  containers: [],
+  containers: [
+    {
+      id: '58a0e421339d',
+      image: 'johnwayne/my-nginx',
+      created: '24 days ago',
+      status: 'up',
+      names: 'modest_mayer',
+    },
+    {
+      id: 'b618633c9657',
+      image: 'johnwayne/client-side-server',
+      created: '9 days ago',
+      status: 'up',
+      names: 'compassionate_newton',
+    },
+    {
+      id: 'beed34dfc862',
+      image: 'johnwayne/client-side-server',
+      created: '5 seconds ago',
+      status: 'up',
+      names: 'optimistic_mendel',
+    },
+    {
+      id: 'b5991d1fbe41',
+      image: 'node',
+      created: '31 hours ago',
+      status: 'up',
+      names: 'romantic_boyd',
+    },
+    {
+      id: '29900a5db0c4',
+      image: 'johnwayne/client-side-server',
+      created: '29 minutes ago',
+      status: 'up',
+      names: 'nice_liskov',
+    },
+  ],
 };

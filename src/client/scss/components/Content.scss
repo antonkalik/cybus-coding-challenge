@@ -1,4 +1,24 @@
 .content {
   border-radius: 0 8px 8px 8px;
   background: $light;
+  .table {
+    padding: 10px;
+    .row {
+      display: flex;
+      margin: 10px 0;
+      border: 2px solid $black;
+      box-shadow: 2px 2px black;
+      min-height: 50px;
+      border-radius: 8px;
+      > div {
+        border-right: 1px solid $dark-gray;
+        padding: 10px;
+        flex: 1;
+        &:last-child {
+          border: none;
+          text-align: right;
+        }
+      }
+    }
+  }
 }

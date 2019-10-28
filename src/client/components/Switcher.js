@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { actionUpdateStore } from '../redux/actions';
 import { connect } from 'react-redux';
 
-function Switcher({ items, store, updateStore, history }) {
+function Switcher({ store, updateStore, history }) {
   const chooseActive = item => () => {
     updateStore({ currentTab: item });
     history.push(`/${item}`);
@@ -12,7 +12,7 @@ function Switcher({ items, store, updateStore, history }) {
 
   return (
     <div className="switcher">
-      {items.map(item => {
+      {['images', 'containers'].map(item => {
         return (
           <div
             className={`tab${store.currentTab === item ? ' active' : ''}`}

@@ -1,5 +1,11 @@
 import React from 'react';
 
-export default function Header() {
-  return <div className="header"><h1>Cybus Coding Challenge</h1></div>;
+export default function Header({ items }) {
+  return (
+    <div className="header">
+      {items.map(item => {
+        return <div key={item}>{item}</div>;
+      })}
+    </div>
+  );
 }

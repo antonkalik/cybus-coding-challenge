@@ -3,29 +3,19 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionUpdateStore } from '../redux/actions';
 import { Content, Switcher } from '../components';
-import FakeDB from '../db';
 
-export function Home({ updateStore, location, history }) {
-  useEffect(() => {
-    const userName = FakeDB.findByKey('userName');
-    if (!userName) {
-      FakeDB.drop();
-      history.push('/');
-    }
-  }, [history]);
-
+export function Home({ updateStore, location }) {
   const currentTab = location.pathname.replace(/^\/+/, '');
+
   useEffect(() => {
     updateStore({
       currentTab,
     });
   }, [updateStore, currentTab]);
 
-  const items = ['images', 'containers'];
-
   return (
     <div className="home">
-      <Switcher items={items} />
+      <Switcher />
       <Content currentTab={currentTab} />
     </div>
   );
