@@ -18,9 +18,9 @@ function Login({ updateStore, store, history }) {
     if (store.userName && store.userName.length > 3) {
       debounce(async () => {
         LocalStorage.setItem('isLoggedIn', true);
-        await FakeDB.save('userName', store.userName);
         setLoading(false);
-        updateStore({ isLoggedIn: true });
+        const { data } = await FakeDB.save('userName', store.userName);
+        updateStore({ ...data, isLoggedIn: true });
         history.push('/images');
       });
     } else {

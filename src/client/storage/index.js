@@ -9,6 +9,8 @@ export class LocalStorage {
   static removeItem = key => localStorage.removeItem(key);
 
   static reset = () => {
+    let db = this.getItem('db');
     localStorage.clear();
+    this.setItem('db', { ...db, userName: '' });
   };
 }
