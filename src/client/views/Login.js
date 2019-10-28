@@ -12,26 +12,25 @@ function Login({ updateStore, store, history }) {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  // handleKeyPress = e => {
-  //   if (e.key === 'Enter') {
-  //     this.login();
-  //   }
-  // }
-  //
-  // useEffect(() => {
-  //   document.addEventListener('keypress', handleKeyPress);
-  //   return () => {
-  //     document.removeEventListener('keypress', handleKeyPress)
-  //   }
-  // }, []);
+  const handleKeyPress = e => {
+    if (e.key === 'Enter') {
+      onClick(e.target.value);
+    }
+  };
 
-  const onClick = e => {
-    e.preventDefault();
+  useEffect(() => {
+    document.addEventListener('keypress', handleKeyPress);
+    return () => {
+      document.removeEventListener('keypress', handleKeyPress);
+    };
+  }, []);
+
+  const onClick = userName => {
     setLoading(true);
-    if (store.userName && store.userName.length > 3) {
+    if (userName && userName.length > 3) {
       debounce(async () => {
         LocalStorage.setItem('isLoggedIn', true);
-        await FakeDB.save('userName', store.userName);
+        await FakeDB.save('userName', userName);
         setLoading(false);
         updateStore({ isLoggedIn: true });
         history.push('/images');
