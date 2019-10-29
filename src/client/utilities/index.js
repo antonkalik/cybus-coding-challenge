@@ -14,3 +14,11 @@ export const debounce = (fn, time = 500) => {
 
 export const searching = (data, query) =>
   data.filter(item => Object.values(item).find(val => val === query));
+
+export const filterObj = (obj, k) =>
+  Object.keys(obj)
+    .filter(key => k !== key)
+    .reduce((a, c) => {
+      a[c] = obj[c];
+      return a;
+    }, {});

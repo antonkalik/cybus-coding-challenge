@@ -41,7 +41,7 @@ export default {
       id: 'beed34dfc862',
       image: 'johnwayne/client-side-server',
       created: '5 seconds ago',
-      status: 'up',
+      status: 'paused',
       names: 'optimistic_mendel',
     },
     {
@@ -55,7 +55,7 @@ export default {
       id: '29900a5db0c4',
       image: 'johnwayne/client-side-server',
       created: '29 minutes ago',
-      status: 'up',
+      status: 'paused',
       names: 'nice_liskov',
     },
   ],
