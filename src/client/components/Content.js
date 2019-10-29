@@ -39,6 +39,15 @@ function Content({ store, currentTab, updateStore, updateContainer }) {
     actions[key]();
   };
 
+  const getActionKeys = (actions, status) => {
+    if (status === 'dead') {
+      return ['remove'];
+    }
+    const keysForRemove = status === 'up' ? 'start' : 'stop';
+    const getObj = filterObj(actions, keysForRemove);
+    return Object.keys(getObj);
+  };
+
   return (
     <div className="content">
       <div className="table">
@@ -50,33 +59,29 @@ function Content({ store, currentTab, updateStore, updateContainer }) {
         {store[currentTab].length > 0 ? (
           store[currentTab].map((item, index) => {
             return (
-              <div className="row" key={item.id}>
+              <div
+                className={`row${item.status === 'removing...' ? ' removing' : ''}`}
+                key={item.id}
+              >
                 {Object.keys(item).map(key => (
-                  <div
-                    className={`cell${item.status === 'removing...' ? ' removing' : ''}`}
-                    key={key}
-                  >
-                    {item[key]}
-                  </div>
+                  <div key={key}>{item[key]}</div>
                 ))}
                 {currentTab === 'containers' && (
                   <div className="actions">
-                    {Object.keys(filterObj(actions, item.status === 'up' ? 'start' : 'stop')).map(
-                      key => {
-                        return (
-                          <div className="action" key={key}>
-                            <div className="tooltip">{key}</div>
-                            <img
-                              onClick={() => {
-                                actionContainer(item, key, index);
-                              }}
-                              src={actions[key]}
-                              alt={key}
-                            />
-                          </div>
-                        );
-                      }
-                    )}
+                    {getActionKeys(actions, item.status).map(key => {
+                      return (
+                        <div className="action" key={key}>
+                          <div className="tooltip">{key}</div>
+                          <img
+                            onClick={() => {
+                              actionContainer(item, key, index);
+                            }}
+                            src={actions[key]}
+                            alt={key}
+                          />
+                        </div>
+                      );
+                    })}
                   </div>
                 )}
               </div>

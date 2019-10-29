@@ -4,7 +4,7 @@ import { RESET_STORE, UPDATE_STORE, UPDATE_CONTAINER, UPDATE_TAB } from './types
 
 const initialState = {
   isLoggedIn: false,
-  userName: '',
+  userName: 'antonkalik',
   currentTab: 'images',
   ...fakeData,
   search: '',

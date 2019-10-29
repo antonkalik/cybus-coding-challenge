@@ -26,6 +26,13 @@ export const fakeData = {
       created: '24 days ago',
       size: '903MB',
     },
+    {
+      repository: 'ssr-sql',
+      id: id(),
+      tag: 'latest',
+      created: '5 days ago',
+      size: '1.5GB',
+    },
   ],
   containers: [
     {
@@ -62,6 +69,20 @@ export const fakeData = {
       created: '29 minutes ago',
       status: 'paused',
       names: 'nice_liskov',
+    },
+    {
+      id: id(),
+      image: 'johnwayne/my-node',
+      created: '18 hours ago',
+      status: 'exited',
+      names: 'boring_wozniak',
+    },
+    {
+      id: id(),
+      image: 'ssr-sql',
+      created: '15 days ago',
+      status: 'dead',
+      names: 'agitated_darwin',
     },
   ],
 };

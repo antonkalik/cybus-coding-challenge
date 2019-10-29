@@ -11,11 +11,10 @@ import logoutImage from '../res/logout.svg';
 function Navigation({ store, resetStore, history }) {
   const isLoggedIn = store.isLoggedIn && LocalStorage.getItem('isLoggedIn');
 
-  const logout = e => {
-    e.preventDefault();
-    LocalStorage.reset();
+  const logout = () => {
     resetStore();
-    history.push('/');
+    LocalStorage.reset();
+    history.push('/login');
   };
 
   const login = e => {
@@ -25,15 +24,13 @@ function Navigation({ store, resetStore, history }) {
 
   return (
     <div className="navigation">
-      <div
+      <img
         onClick={() => {
           history.push('/');
         }}
-        className="logotype"
-      >
-        <img src={logotype} />
-        <p>Cybusdock</p>
-      </div>
+        src={logotype}
+        alt="logo"
+      />
       {isLoggedIn ? (
         <div className="user">
           <p>{store.userName}</p>

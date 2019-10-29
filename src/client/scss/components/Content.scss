@@ -5,8 +5,7 @@
   .table {
     padding: 10px 10px 5px 10px;
     background: $light;
-    border-radius: 8px;
-    border-top-left-radius: 0px;
+    border-radius: 0 8px 8px 8px;
     .header {
       display: flex;
       > div {
@@ -26,6 +25,9 @@
       box-shadow: 2px 2px $black;
       min-height: 50px;
       border-radius: 8px;
+      &.removing {
+        color: $dark-gray;
+      }
       > div {
         border-right: 1px dotted $black;
         padding: 10px;
@@ -49,7 +51,7 @@
           .tooltip {
             position: absolute;
             display: none;
-            z-index: 2222;
+            z-index: 99;
             border: 2px solid $black;
             background: $light;
             top: -50px;

@@ -1,24 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionUpdateStore } from '../redux/actions';
 import { withRouter } from 'react-router';
 import { LocalStorage } from '../storage';
-import FakeDB from '../db';
 import { Button, Input } from '../components';
 import { debounce } from '../utilities';
 
-function Login({ updateStore, store, history }) {
+function Login({ updateStore, userName, history }) {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   const onClick = e => {
     e.preventDefault();
     setLoading(true);
-    if (store.userName && store.userName.length > 3) {
+    if (userName && userName.length > 3) {
       debounce(async () => {
         LocalStorage.setItem('isLoggedIn', true);
-        LocalStorage.setItem('userName', store.userName);
+        LocalStorage.setItem('userName', userName);
         setLoading(false);
         updateStore({ isLoggedIn: true });
         history.push('/images');
@@ -42,9 +41,8 @@ function Login({ updateStore, store, history }) {
         <h1>Hello, please, enter your username and press login.</h1>
         <Input
           error={errorMessage}
-          pattern="[A-Za-z0-9@-_.]*"
           placeholder="Your username"
-          value={store.userName}
+          value={userName}
           onChange={onChange}
         />
         <Button loading={loading} onClick={onClick} text="Login" />
@@ -53,8 +51,8 @@ function Login({ updateStore, store, history }) {
   );
 }
 
-const mapStateToProps = store => {
-  return { store };
+const mapStateToProps = ({ userName }) => {
+  return { userName };
 };
 
 const mapDispatchToProps = dispatch => {

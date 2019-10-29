@@ -5,9 +5,11 @@ import { actionUpdateStore } from '../redux/actions';
 import { Content, Switcher } from '../components';
 import * as queryString from 'query-string';
 import { searching } from '../utilities';
+import { LocalStorage } from '../storage';
 
 export function Home({ updateStore, store, location }) {
   const currentTab = location.pathname.replace(/^\/+/, '');
+  const userName = LocalStorage.getItem('userName');
 
   useEffect(() => {
     updateStore({
@@ -23,6 +25,7 @@ export function Home({ updateStore, store, location }) {
     updateStore({
       [currentTab]: updatedData,
       search,
+      userName,
     });
   }, []);
 
