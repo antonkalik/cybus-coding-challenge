@@ -7,6 +7,7 @@ import start from '../res/actions/start.svg';
 import stop from '../res/actions/stop.svg';
 import restart from '../res/actions/restart.svg';
 import remove from '../res/actions/remove.svg';
+import notFound from '../res/not_found.svg';
 
 function Content({ store, currentTab }) {
   const actions = { remove, restart, stop, start };
@@ -23,24 +24,31 @@ function Content({ store, currentTab }) {
             return <div key={it}>{it}</div>;
           })}
         </div>
-        {store[currentTab].map(container => {
-          return (
-            <div className="row" key={container.id}>
-              {Object.keys(container).map(key => (
-                <div key={key}>{container[key]}</div>
-              ))}
-              {currentTab === 'containers' && (
-                <div className="actions">
-                  {Object.keys(
-                    filterObj(actions, container.status === 'up' ? 'stop' : 'start')
-                  ).map(key => {
-                    return <img key={key} src={actions[key]} alt={key} />;
-                  })}
-                </div>
-              )}
-            </div>
-          );
-        })}
+        {store[currentTab].length > 0 ? (
+          store[currentTab].map(container => {
+            return (
+              <div className="row" key={container.id}>
+                {Object.keys(container).map(key => (
+                  <div key={key}>{container[key]}</div>
+                ))}
+                {currentTab === 'containers' && (
+                  <div className="actions">
+                    {Object.keys(
+                      filterObj(actions, container.status === 'up' ? 'stop' : 'start')
+                    ).map(key => {
+                      return <img key={key} src={actions[key]} alt={key} />;
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })
+        ) : (
+          <div className="not-found">
+            <img src={notFound} alt="not found" />
+            <p>{currentTab} not found </p>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -19,10 +19,18 @@
     cursor: pointer;
     border: 2px solid $black;
     border-bottom: none;
-    &:hover,
+    background: $black;
+    color: $light;
     &.active {
-      background: $black;
-      color: $light
+      color: $black;
+      background: $dark-gray;
+      border: 2px solid $black;
+      border-bottom: none;
+      box-shadow: 0 3px $dark-gray;
+    }
+    &:hover {
+      color: $black;
+      background: $dark-gray;
     }
   }
   .search-tab {

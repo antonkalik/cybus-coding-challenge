@@ -18,10 +18,15 @@ function Login({ updateStore, store, history }) {
     if (store.userName && store.userName.length > 3) {
       debounce(async () => {
         LocalStorage.setItem('isLoggedIn', true);
+        LocalStorage.setItem('userName', store.userName);
         setLoading(false);
-        const { data } = await FakeDB.save('userName', store.userName);
-        updateStore({ ...data, isLoggedIn: true });
-        history.push('/images');
+        FakeDB.init()
+          .then(({ data }) => {
+            updateStore({ isLoggedIn: true });
+            history.push('/images');
+            updateStore({ ...data });
+          })
+          .catch(e => console.error(e));
       });
     } else {
       debounce(() => {

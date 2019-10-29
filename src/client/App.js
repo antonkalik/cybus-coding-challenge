@@ -11,13 +11,11 @@ import { PrivateRoute } from './hocs';
 
 function App({ updateStore }) {
   const isLoggedIn = LocalStorage.getItem('isLoggedIn');
-
+  const userName = LocalStorage.getItem('userName');
   useEffect(() => {
     FakeDB.init()
       .then(({ data }) => {
-        const { userName, ...rest } = data;
-        const updateRest = isLoggedIn ? {} : rest;
-        updateStore({ ...updateRest, userName, isLoggedIn });
+        updateStore({ ...data, userName, isLoggedIn });
       })
       .catch(e => console.error(e));
   }, []);
