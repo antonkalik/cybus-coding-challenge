@@ -1,4 +1,4 @@
-import { UPDATE_STORE, RESET_STORE, UPDATE_CONTAINER, UPDATE_TAB } from './types';
+import { UPDATE_STORE, RESET_STORE, UPDATE_CONTAINER, UPDATE_TAB, RESET_SEARCH } from './types';
 
 export const actionUpdateStore = (payload = {}) => {
   return {

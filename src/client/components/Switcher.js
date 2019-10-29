@@ -6,32 +6,29 @@ import { connect } from 'react-redux';
 import { Input, Button } from '.';
 import { searching } from '../utilities';
 
-function Switcher({ store, updateStore, updateTab, history }) {
-  const chooseActive = async item => {
-    if (item !== store.currentTab) {
-      updateTab({
-        currentTab: item,
-      });
+function Switcher({ search, currentTab, data, updateStore, updateTab, history }) {
+  const chooseActive = item => {
+    if (item !== currentTab) {
+      updateTab(item);
       history.push(`/${item}`);
     }
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    const data = store[store.currentTab];
-    if (store.search !== '') {
+    if (search !== '') {
       history.push({
-        pathname: '/' + store.currentTab,
-        search: '?q=' + store.search,
+        pathname: '/' + currentTab,
+        search: '?q=' + search,
       });
 
+      // search logic
       updateStore({
-        [store.currentTab]: searching(data, store.search),
+        [currentTab]: searching(data, search),
       });
     } else {
-      updateStore({
-        [store.currentTab]: data,
-      });
+      updateTab(currentTab);
+      history.push(`/${currentTab}`);
     }
   };
 
@@ -40,7 +37,7 @@ function Switcher({ store, updateStore, updateTab, history }) {
       {['images', 'containers'].map(item => {
         return (
           <div
-            className={`tab${store.currentTab === item ? ' active' : ''}`}
+            className={`tab${currentTab === item ? ' active' : ''}`}
             onClick={() => chooseActive(item)}
             key={item}
           >
@@ -56,7 +53,7 @@ function Switcher({ store, updateStore, updateTab, history }) {
               search: target.value,
             });
           }}
-          value={store.search}
+          value={search}
         />
         <Button onClick={handleSubmit} text="Find" />
       </div>
@@ -64,8 +61,8 @@ function Switcher({ store, updateStore, updateTab, history }) {
   );
 }
 
-const mapStateToProps = store => {
-  return { store };
+const mapStateToProps = ({ currentTab, search, ...rest }) => {
+  return { currentTab, search, data: rest[currentTab] };
 };
 
 const mapDispatchToProps = dispatch => {

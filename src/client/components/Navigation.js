@@ -8,9 +8,7 @@ import { connect } from 'react-redux';
 import logotype from '../res/logotype.svg';
 import logoutImage from '../res/logout.svg';
 
-function Navigation({ store, resetStore, history }) {
-  const isLoggedIn = store.isLoggedIn && LocalStorage.getItem('isLoggedIn');
-
+function Navigation({ isLoggedIn, userName, resetStore, history }) {
   const logout = () => {
     resetStore();
     LocalStorage.reset();
@@ -33,7 +31,7 @@ function Navigation({ store, resetStore, history }) {
       />
       {isLoggedIn ? (
         <div className="user">
-          <p>{store.userName}</p>
+          <p>{userName}</p>
           <img onClick={logout} className="logout" src={logoutImage} />
         </div>
       ) : (
@@ -43,8 +41,8 @@ function Navigation({ store, resetStore, history }) {
   );
 }
 
-const mapStateToProps = store => {
-  return { store };
+const mapStateToProps = ({ userName, isLoggedIn }) => {
+  return { userName, isLoggedIn };
 };
 
 const mapDispatchToProps = dispatch => {
