@@ -4,10 +4,9 @@ import { connect } from 'react-redux';
 import { actionUpdateStore } from '../redux/actions';
 import { Content, Switcher } from '../components';
 import * as queryString from 'query-string';
-import FakeDB from '../db';
 import { searching } from '../utilities';
 
-export function Home({ updateStore, location }) {
+export function Home({ updateStore, store, location }) {
   const currentTab = location.pathname.replace(/^\/+/, '');
 
   useEffect(() => {
@@ -18,12 +17,12 @@ export function Home({ updateStore, location }) {
 
   useEffect(() => {
     const search = location.search ? queryString.parse(location.search).q : '';
+    const data = store[currentTab];
+    const updatedData = search ? searching(data, search) : data;
 
-    FakeDB.findByKey(currentTab).then(({ data }) => {
-      updateStore({
-        [currentTab]: search ? searching(data, search) : data,
-        search,
-      });
+    updateStore({
+      [currentTab]: updatedData,
+      search,
     });
   }, []);
 
@@ -35,6 +34,10 @@ export function Home({ updateStore, location }) {
   );
 }
 
+const mapStateToProps = store => {
+  return { store };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     updateStore: bindActionCreators(actionUpdateStore, dispatch),
@@ -42,6 +45,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Home);

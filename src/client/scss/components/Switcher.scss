@@ -23,14 +23,14 @@
     color: $light;
     &.active {
       color: $black;
-      background: $dark-gray;
+      background: $light;
       border: 2px solid $black;
       border-bottom: none;
-      box-shadow: 0 3px $dark-gray;
+      box-shadow: 0 3px $light;
     }
     &:hover {
       color: $black;
-      background: $dark-gray;
+      background: $light;
     }
   }
   .search-tab {

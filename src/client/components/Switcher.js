@@ -1,18 +1,15 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
-import { actionUpdateStore } from '../redux/actions';
+import { actionUpdateStore, actionUpdateTab } from '../redux/actions';
 import { connect } from 'react-redux';
 import { Input, Button } from '.';
-import FakeDB from '../db';
 import { searching } from '../utilities';
 
-function Switcher({ store, updateStore, history }) {
+function Switcher({ store, updateStore, updateTab, history }) {
   const chooseActive = async item => {
     if (item !== store.currentTab) {
-      const { data } = await FakeDB.findByKey(item);
-      updateStore({
-        [item]: data,
+      updateTab({
         currentTab: item,
       });
       history.push(`/${item}`);
@@ -21,7 +18,7 @@ function Switcher({ store, updateStore, history }) {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const { data } = await FakeDB.findByKey(store.currentTab);
+    const data = store[store.currentTab];
     if (store.search !== '') {
       history.push({
         pathname: '/' + store.currentTab,
@@ -74,6 +71,7 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => {
   return {
     updateStore: bindActionCreators(actionUpdateStore, dispatch),
+    updateTab: bindActionCreators(actionUpdateTab, dispatch),
   };
 };
 

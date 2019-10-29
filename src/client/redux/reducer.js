@@ -1,12 +1,12 @@
+import { fakeData } from '../db';
 import { createReducer } from '../utilities';
-import { RESET_STORE, UPDATE_STORE } from './types';
+import { RESET_STORE, UPDATE_STORE, UPDATE_CONTAINER, UPDATE_TAB } from './types';
 
 const initialState = {
   isLoggedIn: false,
   userName: '',
   currentTab: 'images',
-  images: [],
-  containers: [],
+  ...fakeData,
   search: '',
 };
 
@@ -19,5 +19,20 @@ export default createReducer(initialState, {
   },
   [RESET_STORE]: () => {
     return initialState;
+  },
+  [UPDATE_CONTAINER]: (state, { container, index }) => {
+    let containers = state.containers;
+    containers[index] = container;
+    return {
+      ...state,
+      containers,
+    };
+  },
+  [UPDATE_TAB]: (state, { currentTab }) => {
+    return {
+      ...state,
+      ...fakeData,
+      currentTab,
+    };
   },
 });

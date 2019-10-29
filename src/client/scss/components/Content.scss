@@ -4,6 +4,9 @@
   border: 2px solid $black;
   .table {
     padding: 10px 10px 5px 10px;
+    background: $light;
+    border-radius: 8px;
+    border-top-left-radius: 0px;
     .header {
       display: flex;
       > div {
@@ -20,11 +23,11 @@
       margin: 10px 0;
       border: 2px solid $black;
       background: $light;
-      box-shadow: 2px 2px black;
+      box-shadow: 2px 2px $black;
       min-height: 50px;
       border-radius: 8px;
       > div {
-        border-right: 1px solid $dark-gray;
+        border-right: 1px dotted $black;
         padding: 10px;
         flex: 1;
         &:last-child {
@@ -36,10 +39,48 @@
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        img {
+        > div.action {
+          position: relative;
+          display: flex;
+          justify-content: flex-end;
+          height: 30px;
+          width: 30px;
           margin: 4px;
-          width: auto;
-          height: 24px;
+          .tooltip {
+            position: absolute;
+            display: none;
+            z-index: 2222;
+            border: 2px solid $black;
+            background: $light;
+            top: -50px;
+            left: -20px;
+            padding: 10px;
+            border-radius: 4px;
+          }
+          &:hover {
+            .tooltip {
+              display: block;
+            }
+          }
+          img {
+            position: absolute;
+            padding: 2px;
+            border: 2px solid $black;
+            box-shadow: 2px 2px $black;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            width: auto;
+            height: 24px;
+            top: -2px;
+            right: 0;
+
+            &:hover {
+              top: 0;
+              right: -2px;
+              box-shadow: none;
+            }
+          }
         }
       }
     }

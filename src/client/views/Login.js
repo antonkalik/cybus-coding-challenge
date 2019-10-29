@@ -20,13 +20,8 @@ function Login({ updateStore, store, history }) {
         LocalStorage.setItem('isLoggedIn', true);
         LocalStorage.setItem('userName', store.userName);
         setLoading(false);
-        FakeDB.init()
-          .then(({ data }) => {
-            updateStore({ isLoggedIn: true });
-            history.push('/images');
-            updateStore({ ...data });
-          })
-          .catch(e => console.error(e));
+        updateStore({ isLoggedIn: true });
+        history.push('/images');
       });
     } else {
       debounce(() => {

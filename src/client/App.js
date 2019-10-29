@@ -6,18 +6,13 @@ import { bindActionCreators } from 'redux';
 import { actionUpdateStore } from './redux/actions';
 import { connect } from 'react-redux';
 import { LocalStorage } from './storage';
-import FakeDB from './db';
 import { PrivateRoute } from './hocs';
 
 function App({ updateStore }) {
   const isLoggedIn = LocalStorage.getItem('isLoggedIn');
   const userName = LocalStorage.getItem('userName');
   useEffect(() => {
-    FakeDB.init()
-      .then(({ data }) => {
-        updateStore({ ...data, userName, isLoggedIn });
-      })
-      .catch(e => console.error(e));
+    updateStore({ userName, isLoggedIn });
   }, []);
 
   return (
