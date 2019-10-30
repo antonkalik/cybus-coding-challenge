@@ -10,7 +10,6 @@ const headers = {
 };
 
 function Content({ store, currentTab, updateStore }) {
-  console.log({ store })
   const tabData = store[currentTab];
 
   return (

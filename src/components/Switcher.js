@@ -22,7 +22,6 @@ function Switcher({ search, currentTab, data, updateStore, updateTab, history })
         search: '?q=' + search,
       });
 
-      // search logic
       updateStore({
         [currentTab]: searching(data, search),
       });
