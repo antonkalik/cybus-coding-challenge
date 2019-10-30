@@ -45,17 +45,17 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-          },
-        ],
+        test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
+        loader: 'file-loader?name=[name].[ext]',
       },
     ],
   },
   plugins: [
-    new CopyWebpackPPlugin([{ from: '_redirects' }, { from: 'src/res', to: 'res/' }]),
+    new CopyWebpackPPlugin([
+      { from: '_redirects' },
+      { from: 'src/res', to: 'res/' },
+      { from: 'src/res/favicon.ico' },
+    ]),
     new HtmlWebpackPlugin({
       template: './public/index.html',
       filename: './index.html',
