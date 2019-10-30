@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const devMode = process.env.NODE_ENV !== 'production';
@@ -55,6 +56,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new CopyWebpackPPlugin([{ from: '_redirects' }]),
     new HtmlWebpackPlugin({
       template: './public/index.html',
       filename: './index.html',
