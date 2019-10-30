@@ -1,5 +1,5 @@
 ## Cybus Coding Challenge
-Client-side server react application that includes jest, enzyme, lint, prettier, hot module reload, redux, router and etc. Created for Cybus codding challenge.<br>
+Client-side server react application that includes jest, enzyme, lint, prettier, hot module reload, redux, router and etc. Created for Cybus coding challenge.<br>
 
 Port: `localhost:3000`
 
