@@ -8,6 +8,7 @@ const initialState = {
   currentTab: 'images',
   ...fakeData,
   search: '',
+  modal: false,
 };
 
 export default createReducer(initialState, {

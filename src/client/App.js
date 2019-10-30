@@ -1,20 +1,21 @@
 import React, { useEffect } from 'react';
 import { Switch, Route, BrowserRouter as Router, Redirect } from 'react-router-dom';
 import { Home, NotFound, Login } from './views';
-import { Navigation, Footer } from './components';
+import { Navigation, Footer, Modal } from './components';
 import { bindActionCreators } from 'redux';
 import { actionUpdateStore } from './redux/actions';
 import { connect } from 'react-redux';
 import { LocalStorage } from './storage';
 import { PrivateRoute } from './hocs';
 
-function App({ updateStore, isLoggedIn }) {
+function App({ updateStore, isLoggedIn, modal }) {
   useEffect(() => {
     updateStore({ isLoggedIn: LocalStorage.getItem('isLoggedIn') });
   }, [updateStore]);
 
   return (
     <Router>
+      {modal && <Modal />}
       <Navigation />
       <div className="view">
         <Switch>
@@ -34,7 +35,7 @@ function App({ updateStore, isLoggedIn }) {
 }
 
 const mapStateToProps = ({ isLoggedIn }) => {
-  return { isLoggedIn };
+  return { isLoggedIn, modal };
 };
 
 const mapDispatchToProps = dispatch => {

@@ -16,26 +16,23 @@ function Content({ store, currentTab, updateContainer, removeContainer }) {
     containers: ['Container ID', 'Image', 'Created', 'Status', 'Names', 'Actions'],
   };
 
-  const actionContainer = (container, key, index) => {
+  const delayedAction = (beginStatus, finalStatus) => index => {
+    updateContainer(index, beginStatus);
+    if (!finalStatus) {
+      debounce(() => removeContainer(index));
+    } else {
+      debounce(() => updateContainer(index, finalStatus));
+    }
+  };
+
+  const actionContainer = (key, index) => {
     const actions = {
-      remove: () => {
-        updateContainer(index, 'removing...');
-        debounce(() => removeContainer(index));
-      },
-      restart: () => {
-        updateContainer(index, 'restarting...');
-        debounce(() => updateContainer(index, 'up'));
-      },
-      stop: () => {
-        updateContainer(index, 'stopping...');
-        debounce(() => updateContainer(index, 'stop'));
-      },
-      start: () => {
-        updateContainer(index, 'running...');
-        debounce(() => updateContainer(index, 'up'));
-      },
+      remove: delayedAction('removing...'),
+      restart: delayedAction('restarting...', 'up'),
+      stop: delayedAction('stopping...', 'stop'),
+      start: delayedAction('running...', 'up'),
     };
-    actions[key]();
+    actions[key](index);
   };
 
   const getActionKeys = (actions, status) => {
@@ -68,7 +65,7 @@ function Content({ store, currentTab, updateContainer, removeContainer }) {
                       <div className="tooltip">{key}</div>
                       <img
                         onClick={() => {
-                          actionContainer(item, key, index);
+                          actionContainer(key, index);
                         }}
                         src={actions[key]}
                         alt={key}
