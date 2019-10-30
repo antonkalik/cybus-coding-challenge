@@ -13,10 +13,10 @@ export const actionResetStore = () => {
   };
 };
 
-export const actionUpdateContainer = (index, status) => {
+export const actionUpdateContainer = (id, status) => {
   return {
     type: UPDATE_CONTAINER,
-    index,
+    id,
     status,
   };
 };
@@ -28,9 +28,9 @@ export const actionUpdateTab = currentTab => {
   };
 };
 
-export const actionRemoveContainer = index => {
+export const actionRemoveContainer = id => {
   return {
     type: REMOVE_CONTAINER,
-    index,
+    id,
   };
 };

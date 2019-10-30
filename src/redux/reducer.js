@@ -22,16 +22,16 @@ export default createReducer(initialState, {
   [RESET_STORE]: () => {
     return initialState;
   },
-  [UPDATE_CONTAINER]: (state, { index, status }) => {
+  [UPDATE_CONTAINER]: (state, { id, status }) => {
     return {
       ...state,
-      containers: state.containers.map((container, i) => {
-        if (i !== index) {
-          return container;
+      containers: state.containers.map((it, i) => {
+        if (it.id !== id) {
+          return it;
         }
 
         return {
-          ...container,
+          ...it,
           status,
         };
       }),
@@ -44,10 +44,10 @@ export default createReducer(initialState, {
       currentTab,
     };
   },
-  [REMOVE_CONTAINER]: (state, { index }) => {
+  [REMOVE_CONTAINER]: (state, { id }) => {
     return {
       ...state,
-      containers: [...state.containers.slice(0, index), ...state.containers.slice(index + 1)],
+      containers: state.containers.filter(it => it.id !== id),
     };
   },
 });

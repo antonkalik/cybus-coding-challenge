@@ -1,34 +1,29 @@
-const id = () =>
-  Math.random()
-    .toString(36)
-    .substr(2, 9);
-
 export const fakeData = {
   images: [
     {
       repository: 'johnwayne/client-side-server',
-      id: id(),
+      id: '7sdkf842j7skcc',
       tag: 'latest',
       created: '12 hours ago',
       size: '1.2GB',
     },
     {
       repository: 'johnwayne/my-nginx',
-      id: id(),
+      id: 'tuw6394kkd3mvd',
       tag: 'latest',
       created: '9 days ago',
       size: '725MB',
     },
     {
       repository: 'node',
-      id: id(),
+      id: 'eu33h2djf0ok2mv',
       tag: '10',
       created: '24 days ago',
       size: '903MB',
     },
     {
       repository: 'ssr-sql',
-      id: id(),
+      id: '6hdh366dhc2d2s',
       tag: 'latest',
       created: '5 days ago',
       size: '1.5GB',
@@ -36,49 +31,49 @@ export const fakeData = {
   ],
   containers: [
     {
-      id: id(),
+      id: '7ycn4sk3kv8s',
       image: 'johnwayne/my-nginx',
       created: '24 days ago',
       status: 'up',
       names: 'modest_mayer',
     },
     {
-      id: id(),
+      id: '2ydkcm84jdjdv',
       image: 'johnwayne/client-side-server',
       created: '9 days ago',
       status: 'up',
       names: 'compassionate_newton',
     },
     {
-      id: id(),
+      id: '4bb99skvisdsiis',
       image: 'johnwayne/client-side-server',
       created: '5 seconds ago',
       status: 'paused',
       names: 'optimistic_mendel',
     },
     {
-      id: id(),
+      id: 'idj73jhv7dkjlla',
       image: 'node',
       created: '31 hours ago',
       status: 'up',
       names: 'romantic_boyd',
     },
     {
-      id: id(),
+      id: '2wi3radsgc23sfnb',
       image: 'johnwayne/client-side-server',
       created: '29 minutes ago',
       status: 'paused',
       names: 'nice_liskov',
     },
     {
-      id: id(),
+      id: '8vjsj22aawv3or',
       image: 'johnwayne/my-node',
       created: '18 hours ago',
       status: 'exited',
       names: 'boring_wozniak',
     },
     {
-      id: id(),
+      id: 'svjjsmkm2j4mss',
       image: 'ssr-sql',
       created: '15 days ago',
       status: 'dead',

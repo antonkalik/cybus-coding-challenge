@@ -5,31 +5,31 @@ import { actionRemoveContainer, actionUpdateContainer, actionUpdateStore } from 
 import { connect } from 'react-redux';
 import { debounce } from '../utilities';
 
-function Modal({ updateStore, shareData: { key, index, id }, updateContainer, removeContainer }) {
+function Modal({ updateStore, shareData: { key, id }, updateContainer, removeContainer }) {
   const onClick = e => {
     if (e.target.name === 'ok') {
-      actionContainer(key, index);
+      actionContainer(key, id);
     }
     updateStore({ modal: false });
   };
 
-  const delayedAction = (beginStatus, finalStatus) => index => {
-    updateContainer(index, beginStatus);
+  const delayedAction = (beginStatus, finalStatus) => id => {
+    updateContainer(id, beginStatus);
     if (!finalStatus) {
-      debounce(() => removeContainer(index));
+      debounce(() => removeContainer(id));
     } else {
-      debounce(() => updateContainer(index, finalStatus));
+      debounce(() => updateContainer(id, finalStatus));
     }
   };
 
-  const actionContainer = (key, index) => {
+  const actionContainer = (key, id) => {
     const actions = {
       remove: delayedAction('removing...'),
       restart: delayedAction('restarting...', 'up'),
       stop: delayedAction('stopping...', 'stop'),
       start: delayedAction('running...', 'up'),
     };
-    actions[key](index);
+    actions[key](id);
   };
 
   return (
