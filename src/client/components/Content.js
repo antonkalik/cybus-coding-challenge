@@ -1,38 +1,19 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
-import { actionUpdateContainer, actionRemoveContainer } from '../redux/actions';
+import { actionUpdateStore } from '../redux/actions';
 import { connect } from 'react-redux';
-import { debounce, filterObj } from '../utilities';
+import { filterObj } from '../utilities';
 import start from '../res/actions/start.svg';
 import stop from '../res/actions/stop.svg';
 import restart from '../res/actions/restart.svg';
 import remove from '../res/actions/remove.svg';
 import notFound from '../res/not_found.svg';
 
-function Content({ store, currentTab, updateContainer, removeContainer }) {
+function Content({ store, currentTab, updateStore }) {
   const actions = { remove, restart, stop, start };
   const headers = {
     images: ['Repository', 'ID', 'Tag', 'Created', 'Size'],
     containers: ['Container ID', 'Image', 'Created', 'Status', 'Names', 'Actions'],
-  };
-
-  const delayedAction = (beginStatus, finalStatus) => index => {
-    updateContainer(index, beginStatus);
-    if (!finalStatus) {
-      debounce(() => removeContainer(index));
-    } else {
-      debounce(() => updateContainer(index, finalStatus));
-    }
-  };
-
-  const actionContainer = (key, index) => {
-    const actions = {
-      remove: delayedAction('removing...'),
-      restart: delayedAction('restarting...', 'up'),
-      stop: delayedAction('stopping...', 'stop'),
-      start: delayedAction('running...', 'up'),
-    };
-    actions[key](index);
   };
 
   const getActionKeys = (actions, status) => {
@@ -65,7 +46,7 @@ function Content({ store, currentTab, updateContainer, removeContainer }) {
                       <div className="tooltip">{key}</div>
                       <img
                         onClick={() => {
-                          actionContainer(key, index);
+                          updateStore({ shareData: { key, index }, modal: true });
                         }}
                         src={actions[key]}
                         alt={key}
@@ -93,8 +74,7 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateContainer: bindActionCreators(actionUpdateContainer, dispatch),
-    removeContainer: bindActionCreators(actionRemoveContainer, dispatch),
+    updateStore: bindActionCreators(actionUpdateStore, dispatch),
   };
 };
 

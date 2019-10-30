@@ -34,7 +34,7 @@ function App({ updateStore, isLoggedIn, modal }) {
   );
 }
 
-const mapStateToProps = ({ isLoggedIn }) => {
+const mapStateToProps = ({ isLoggedIn, modal }) => {
   return { isLoggedIn, modal };
 };
 

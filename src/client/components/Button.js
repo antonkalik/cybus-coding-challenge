@@ -1,10 +1,10 @@
 import React from 'react';
 import { BlinkSymbol } from '.';
 
-export default function Button({ text, onClick, loading }) {
+export default function Button({ text, onClick, loading, name }) {
   return (
     <div className={`button${loading ? ' loading' : ''}`}>
-      <button onClick={onClick}>
+      <button name={name} onClick={onClick}>
         {loading ? (
           <>
             loading

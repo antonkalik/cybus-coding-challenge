@@ -9,6 +9,7 @@ const initialState = {
   ...fakeData,
   search: '',
   modal: false,
+  shareData: {},
 };
 
 export default createReducer(initialState, {

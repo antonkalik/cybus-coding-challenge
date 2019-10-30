@@ -1,0 +1,30 @@
+.modal {
+  position: absolute;
+  background-color: rgba(255,255,255, .8);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  > .modal-content {
+    border: 2px solid $black;
+    background-color: $light;
+    border-radius: 8px;
+    .modal-header {
+      text-align: center;
+      padding: 10px 0;
+      border-bottom: 2px solid $black;
+    }
+    .modal-footer {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      > .button {
+        margin: 10px;
+      }
+    }
+  }
+}
