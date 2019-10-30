@@ -4,17 +4,18 @@
 @import 'mixins';
 @import 'commons';
 
+// components
+@import 'components/Button';
+@import 'components/Input';
+@import 'components/Content';
+@import 'components/Footer';
+@import 'components/Navigation';
+@import 'components/Switcher';
+@import 'components/BlinkSymbol';
+@import 'components/Modal';
+@import 'components/Actions';
+
 // views
 @import 'views/Home';
 @import 'views/Login';
 @import 'views/NotFound';
-
-// components
-@import 'components/Content';
-@import 'components/Footer';
-@import 'components/Navigation';
-@import 'components/Button';
-@import 'components/Input';
-@import 'components/Switcher';
-@import 'components/BlinkSymbol';
-@import 'components/Modal';

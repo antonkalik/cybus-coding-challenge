@@ -40,56 +40,8 @@
           text-align: right;
         }
       }
-      .actions {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        > div.action {
-          position: relative;
-          display: flex;
-          justify-content: flex-end;
-          height: 30px;
-          width: 30px;
-          margin: 4px;
-          .tooltip {
-            position: absolute;
-            display: none;
-            z-index: 99;
-            border: 2px solid $black;
-            background: $light;
-            top: -50px;
-            left: -20px;
-            padding: 10px;
-            border-radius: 4px;
-          }
-          &:hover {
-            .tooltip {
-              display: block;
-            }
-          }
-          img {
-            position: absolute;
-            padding: 2px;
-            border: 2px solid $black;
-            box-shadow: 2px 2px $black;
-            border-radius: 8px;
-            background: white;
-            cursor: pointer;
-            width: auto;
-            height: 24px;
-            top: -2px;
-            right: 0;
-
-            &:hover {
-              top: 0;
-              right: -2px;
-              box-shadow: none;
-            }
-          }
-        }
-      }
     }
-    .not-found {
+    .not-found-results {
       border-top: 2px solid $black;
       display: flex;
       flex-direction: column;

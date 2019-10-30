@@ -46,14 +46,18 @@ function Login({ updateStore, userName, history }) {
   return (
     <div className="login">
       <div>
-        <h1>Hello, please, enter your username and press login.</h1>
-        <Input
-          error={errorMessage}
-          placeholder="Your username"
-          value={userName}
-          onChange={onChange}
-        />
-        <Button loading={loading} onClick={onClick} text="Login" />
+        <div className="login-header">
+          <h1>Hello, please, enter your email and press enter.</h1>
+        </div>
+        <div className="login-body">
+          <Input
+            error={errorMessage}
+            placeholder="your email"
+            value={userName}
+            onChange={onChange}
+          />
+          <Button loading={loading} onClick={onClick} text="Login" />
+        </div>
       </div>
     </div>
   );

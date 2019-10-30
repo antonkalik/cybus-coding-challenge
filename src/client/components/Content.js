@@ -2,28 +2,15 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { actionUpdateStore } from '../redux/actions';
 import { connect } from 'react-redux';
-import { filterObj } from '../utilities';
-import start from '../res/actions/start.svg';
-import stop from '../res/actions/stop.svg';
-import restart from '../res/actions/restart.svg';
-import remove from '../res/actions/remove.svg';
+import { Actions } from '.';
 import notFound from '../res/not_found.svg';
+const headers = {
+  images: ['Repository', 'ID', 'Tag', 'Created', 'Size'],
+  containers: ['Container ID', 'Image', 'Created', 'Status', 'Names', 'Actions'],
+};
 
 function Content({ store, currentTab, updateStore }) {
-  const actions = { remove, restart, stop, start };
-  const headers = {
-    images: ['Repository', 'ID', 'Tag', 'Created', 'Size'],
-    containers: ['Container ID', 'Image', 'Created', 'Status', 'Names', 'Actions'],
-  };
-
-  const getActionKeys = (actions, status) => {
-    if (status === 'dead') {
-      return ['remove'];
-    }
-    const keysForRemove = status === 'up' ? 'start' : 'stop';
-    const getObj = filterObj(actions, keysForRemove);
-    return Object.keys(getObj);
-  };
+  const tabData = store[currentTab];
 
   return (
     <div className="content">
@@ -33,34 +20,21 @@ function Content({ store, currentTab, updateStore }) {
             <div key={it}>{it}</div>
           ))}
         </div>
-        {store[currentTab].length > 0 ? (
-          store[currentTab].map((item, index) => (
+        {tabData.length > 0 ? (
+          tabData.map((item, index) => (
             <div className={`row${item.status === 'removing...' ? ' removing' : ''}`} key={item.id}>
               {Object.keys(item).map(key => (
                 <div key={key}>{item[key]}</div>
               ))}
               {currentTab === 'containers' && (
-                <div className="actions">
-                  {getActionKeys(actions, item.status).map(key => (
-                    <div className="action" key={key}>
-                      <div className="tooltip">{key}</div>
-                      <img
-                        onClick={() => {
-                          updateStore({ shareData: { key, index }, modal: true });
-                        }}
-                        src={actions[key]}
-                        alt={key}
-                      />
-                    </div>
-                  ))}
-                </div>
+                <Actions item={item} index={index} updateStore={updateStore} />
               )}
             </div>
           ))
         ) : (
-          <div className="not-found">
+          <div className="not-found-results">
             <img src={notFound} alt="not found" />
-            <p>{currentTab} not found </p>
+            <p>{currentTab} not found.</p>
           </div>
         )}
       </div>

@@ -23,6 +23,7 @@ function Navigation({ isLoggedIn, userName, resetStore, history }) {
   return (
     <div className="navigation">
       <img
+        className="logotype"
         onClick={() => {
           history.push('/');
         }}

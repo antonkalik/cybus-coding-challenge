@@ -5,9 +5,22 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid $black;
+  .logotype {
+    cursor: pointer;
+  }
   .user {
     display: flex;
     align-items: center;
+    .button {
+      position: relative;
+      display: flex;
+      justify-content: flex-end;
+      height: 30px;
+      min-width: 70px;
+      button {
+        min-width: 30px;
+      }
+    }
     p {
       padding-right: 10px;
     }

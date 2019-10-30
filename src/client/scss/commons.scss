@@ -49,6 +49,10 @@ h1 {
   .view {
     flex-grow: 2;
     position: relative;
-    background-color: $dark-gray
+    background-color: $dark-gray;
+    background-image: radial-gradient(black 20%, transparent 0),
+      radial-gradient(black 20%, transparent 0);
+    background-size: 4px 4px;
+    background-position: 0 0, 2px 2px;
   }
 }

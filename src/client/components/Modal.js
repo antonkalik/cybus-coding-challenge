@@ -5,10 +5,9 @@ import { actionRemoveContainer, actionUpdateContainer, actionUpdateStore } from 
 import { connect } from 'react-redux';
 import { debounce } from '../utilities';
 
-function Modal({ updateStore, shareData, updateContainer, removeContainer }) {
+function Modal({ updateStore, shareData: { key, index, id }, updateContainer, removeContainer }) {
   const onClick = e => {
     if (e.target.name === 'ok') {
-      const { key, index } = shareData;
       actionContainer(key, index);
     }
     updateStore({ modal: false });
@@ -37,7 +36,7 @@ function Modal({ updateStore, shareData, updateContainer, removeContainer }) {
     <div onClick={onClick} className="modal">
       <div className="modal-content">
         <div className="modal-header">
-          <h1>Are you sure?</h1>
+          <h1>Are you sure you want to {key}: {id}?</h1>
         </div>
         <div className="modal-footer">
           <Button text="Ok" name="ok" onClick={onClick} />
