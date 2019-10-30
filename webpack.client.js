@@ -46,6 +46,7 @@ module.exports = {
       },
       {
         test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
+        exclude: /node_modules/,
         loader: 'file-loader?name=[name].[ext]',
       },
     ],
@@ -57,6 +58,7 @@ module.exports = {
       { from: 'src/res/favicon.ico' },
     ]),
     new HtmlWebpackPlugin({
+      favicon: 'src/res/favicon.ico',
       template: './public/index.html',
       filename: './index.html',
     }),
