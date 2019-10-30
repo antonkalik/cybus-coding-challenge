@@ -15,7 +15,7 @@ export function Home({ updateStore, store, location }) {
     updateStore({
       currentTab,
     });
-  }, [currentTab]);
+  }, [currentTab, updateStore]);
 
   useEffect(() => {
     const search = location.search ? queryString.parse(location.search).q : '';

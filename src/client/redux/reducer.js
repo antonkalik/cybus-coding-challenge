@@ -1,10 +1,10 @@
 import { fakeData } from '../db';
 import { createReducer } from '../utilities';
-import { RESET_STORE, UPDATE_STORE, UPDATE_CONTAINER, UPDATE_TAB } from './types';
+import { RESET_STORE, UPDATE_STORE, UPDATE_CONTAINER, UPDATE_TAB, REMOVE_CONTAINER } from './types';
 
 const initialState = {
   isLoggedIn: false,
-  userName: 'antonkalik',
+  userName: '',
   currentTab: 'images',
   ...fakeData,
   search: '',
@@ -20,12 +20,19 @@ export default createReducer(initialState, {
   [RESET_STORE]: () => {
     return initialState;
   },
-  [UPDATE_CONTAINER]: (state, { container, index }) => {
-    let containers = state.containers;
-    containers[index] = container;
+  [UPDATE_CONTAINER]: (state, { index, status }) => {
     return {
       ...state,
-      containers,
+      containers: state.containers.map((container, i) => {
+        if (i !== index) {
+          return container;
+        }
+
+        return {
+          ...container,
+          status,
+        };
+      }),
     };
   },
   [UPDATE_TAB]: (state, { currentTab }) => {
@@ -33,6 +40,12 @@ export default createReducer(initialState, {
       ...state,
       ...fakeData,
       currentTab,
+    };
+  },
+  [REMOVE_CONTAINER]: (state, { index }) => {
+    return {
+      ...state,
+      containers: [...state.containers.slice(0, index), ...state.containers.slice(index + 1)],
     };
   },
 });

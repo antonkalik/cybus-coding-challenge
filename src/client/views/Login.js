@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionUpdateStore } from '../redux/actions';
@@ -10,9 +10,17 @@ import { debounce } from '../utilities';
 function Login({ updateStore, userName, history }) {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const handleKeyPress = e => {
+    if (e.key === 'Enter') {
+      onClick();
+    }
+  };
+  useEffect(() => {
+    document.addEventListener('keypress', handleKeyPress);
+    return () => document.removeEventListener('keypress', handleKeyPress);
+  });
 
-  const onClick = e => {
-    e.preventDefault();
+  const onClick = () => {
     setLoading(true);
     if (userName && userName.length > 3) {
       debounce(async () => {

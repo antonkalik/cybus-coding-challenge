@@ -25,6 +25,9 @@
       box-shadow: 2px 2px $black;
       min-height: 50px;
       border-radius: 8px;
+      &:hover {
+        box-shadow: none;
+      }
       &.removing {
         color: $dark-gray;
       }

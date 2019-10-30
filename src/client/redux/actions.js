@@ -1,4 +1,4 @@
-import { UPDATE_STORE, RESET_STORE, UPDATE_CONTAINER, UPDATE_TAB, RESET_SEARCH } from './types';
+import { UPDATE_STORE, RESET_STORE, UPDATE_CONTAINER, UPDATE_TAB, REMOVE_CONTAINER } from './types';
 
 export const actionUpdateStore = (payload = {}) => {
   return {
@@ -13,11 +13,11 @@ export const actionResetStore = () => {
   };
 };
 
-export const actionUpdateContainer = (container, index) => {
+export const actionUpdateContainer = (index, status) => {
   return {
     type: UPDATE_CONTAINER,
-    container,
     index,
+    status,
   };
 };
 
@@ -25,5 +25,12 @@ export const actionUpdateTab = currentTab => {
   return {
     type: UPDATE_TAB,
     currentTab,
+  };
+};
+
+export const actionRemoveContainer = index => {
+  return {
+    type: REMOVE_CONTAINER,
+    index,
   };
 };
