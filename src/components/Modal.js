@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '.';
+import { Button } from './index';
 import { bindActionCreators } from 'redux';
 import { actionRemoveContainer, actionUpdateContainer, actionUpdateStore } from '../redux/actions';
 import { connect } from 'react-redux';

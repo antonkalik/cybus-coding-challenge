@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Button } from '../components';
+import { Button } from './index';
 import { LocalStorage } from '../storage';
 import { bindActionCreators } from 'redux';
 import { actionResetStore } from '../redux/actions';

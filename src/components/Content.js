@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { actionUpdateStore } from '../redux/actions';
 import { connect } from 'react-redux';
-import { Actions } from '.';
+import { Actions } from './index';
 import notFound from '../res/not_found.svg';
 const headers = {
   images: ['Repository', 'ID', 'Tag', 'Created', 'Size'],
@@ -10,6 +10,7 @@ const headers = {
 };
 
 function Content({ store, currentTab, updateStore }) {
+  console.log({ store })
   const tabData = store[currentTab];
 
   return (

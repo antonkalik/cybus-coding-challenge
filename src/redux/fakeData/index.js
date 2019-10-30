@@ -26,13 +26,6 @@ export const fakeData = {
       created: '24 days ago',
       size: '903MB',
     },
-    {
-      repository: 'ssr-sql',
-      id: id(),
-      tag: 'latest',
-      created: '5 days ago',
-      size: '1.5GB',
-    },
   ],
   containers: [
     {

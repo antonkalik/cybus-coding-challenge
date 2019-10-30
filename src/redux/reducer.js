@@ -1,4 +1,4 @@
-import { fakeData } from '../db';
+import { fakeData } from './fakeData';
 import { createReducer } from '../utilities';
 import { RESET_STORE, UPDATE_STORE, UPDATE_CONTAINER, UPDATE_TAB, REMOVE_CONTAINER } from './types';
 

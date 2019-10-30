@@ -1,5 +1,5 @@
 import React from 'react';
-import { BlinkSymbol } from '.';
+import { BlinkSymbol } from './index';
 
 export default function Button({ text, onClick, loading, name }) {
   return (

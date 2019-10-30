@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { actionUpdateStore, actionUpdateTab } from '../redux/actions';
 import { connect } from 'react-redux';
-import { Input, Button } from '.';
+import { Input, Button } from './index';
 import { searching } from '../utilities';
 
 function Switcher({ search, currentTab, data, updateStore, updateTab, history }) {
