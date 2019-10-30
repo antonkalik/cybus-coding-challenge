@@ -3,6 +3,8 @@ Client-side server react application that includes jest, enzyme, lint, prettier,
 
 Port: `localhost:3000`
 
+Online: https://cybusdock.netlify.com
+
 #### Getting Started
 1. On root directory install packages:<br>
 `npm i`

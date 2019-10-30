@@ -25,7 +25,7 @@ export default createReducer(initialState, {
   [UPDATE_CONTAINER]: (state, { id, status }) => {
     return {
       ...state,
-      containers: state.containers.map((it, i) => {
+      containers: state.containers.map(it => {
         if (it.id !== id) {
           return it;
         }
