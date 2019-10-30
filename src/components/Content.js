@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux';
 import { actionUpdateStore } from '../redux/actions';
 import { connect } from 'react-redux';
 import { Actions } from './index';
-import notFound from '../res/not_found.svg';
 const headers = {
   images: ['Repository', 'ID', 'Tag', 'Created', 'Size'],
   containers: ['Container ID', 'Image', 'Created', 'Status', 'Names', 'Actions'],
@@ -33,7 +32,7 @@ function Content({ store, currentTab, updateStore }) {
           ))
         ) : (
           <div className="not-found-results">
-            <img src={notFound} alt="not found" />
+            <img src="res/not_found.svg" alt="not found" />
             <p>{currentTab} not found.</p>
           </div>
         )}

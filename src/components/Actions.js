@@ -1,12 +1,13 @@
 import React from 'react';
 import { filterObj } from '../utilities';
-import start from '../res/actions/start.svg';
-import stop from '../res/actions/stop.svg';
-import restart from '../res/actions/restart.svg';
-import remove from '../res/actions/remove.svg';
 
 export default function Actions({ item, index, updateStore }) {
-  const actions = { remove, restart, stop, start };
+  const actions = {
+    remove: 'res/actions/remove.svg',
+    restart: 'res/actions/restart.svg',
+    stop: 'res/actions/stop.svg',
+    start: 'res/actions/start.svg',
+  };
   const getActionKeys = (actions, status) => {
     if (status === 'dead') {
       return ['remove'];

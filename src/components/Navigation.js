@@ -5,8 +5,6 @@ import { LocalStorage } from '../storage';
 import { bindActionCreators } from 'redux';
 import { actionResetStore } from '../redux/actions';
 import { connect } from 'react-redux';
-import logotype from '../res/logotype.svg';
-import logoutImage from '../res/logout.svg';
 
 function Navigation({ isLoggedIn, userName, resetStore, history }) {
   const logout = () => {
@@ -27,13 +25,13 @@ function Navigation({ isLoggedIn, userName, resetStore, history }) {
         onClick={() => {
           history.push('/');
         }}
-        src={logotype}
+        src="res/logotype.svg"
         alt="logo"
       />
       {isLoggedIn ? (
         <div className="user">
           <p>{userName}</p>
-          <img onClick={logout} className="logout" src={logoutImage} />
+          <img onClick={logout} className="logout" src="res/logout.svg" />
         </div>
       ) : (
         <Button onClick={login} text="Login" />

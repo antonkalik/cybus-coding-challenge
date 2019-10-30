@@ -45,18 +45,17 @@ module.exports = {
         ],
       },
       {
-        test: /\.(jpg|png|svg)$/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 25000,
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
           },
-        },
+        ],
       },
     ],
   },
   plugins: [
-    new CopyWebpackPPlugin([{ from: '_redirects' }]),
+    new CopyWebpackPPlugin([{ from: '_redirects' }, { from: 'src/res', to: 'res/' }]),
     new HtmlWebpackPlugin({
       template: './public/index.html',
       filename: './index.html',
