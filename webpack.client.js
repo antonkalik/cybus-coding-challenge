@@ -52,11 +52,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new CopyWebpackPPlugin([
-      { from: '_redirects' },
-      { from: 'src/res', to: 'res/' },
-      { from: 'src/res/favicon.ico' },
-    ]),
+    new CopyWebpackPPlugin([{ from: '_redirects' }, { from: 'src/res', to: 'res/' }]),
     new HtmlWebpackPlugin({
       favicon: 'src/res/favicon.ico',
       template: './public/index.html',
