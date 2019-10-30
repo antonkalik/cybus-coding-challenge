@@ -36,7 +36,9 @@ function Modal({ updateStore, shareData: { key, index, id }, updateContainer, re
     <div onClick={onClick} className="modal">
       <div className="modal-content">
         <div className="modal-header">
-          <h1>Are you sure you want to {key}: {id}?</h1>
+          <h1>
+            Are you sure you want to {key}: {id}?
+          </h1>
         </div>
         <div className="modal-footer">
           <Button text="Ok" name="ok" onClick={onClick} />

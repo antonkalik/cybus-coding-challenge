@@ -34,17 +34,15 @@ function Switcher({ search, currentTab, data, updateStore, updateTab, history })
 
   return (
     <div className="switcher">
-      {['images', 'containers'].map(item => {
-        return (
-          <div
-            className={`tab${currentTab === item ? ' active' : ''}`}
-            onClick={() => chooseActive(item)}
-            key={item}
-          >
-            All {item}
-          </div>
-        );
-      })}
+      {['images', 'containers'].map(item => (
+        <div
+          className={`tab${currentTab === item ? ' active' : ''}`}
+          onClick={() => chooseActive(item)}
+          key={item}
+        >
+          All {item}
+        </div>
+      ))}
       <div className="search-tab">
         <Input
           placeholder="search..."
