@@ -25,4 +25,13 @@ export const filterObj = (obj, k) =>
 
 export const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
 
+export const getActionKeys = (actions, status) => {
+  if (!actions || status === 'dead') {
+    return ['remove'];
+  }
+  const keysForRemove = status === 'up' ? 'start' : 'stop';
+  const getObj = filterObj(actions, keysForRemove);
+  return Object.keys(getObj);
+};
+
 export const sortByKey = key => (a, b) => (a[key] > b[key] ? 1 : -1);

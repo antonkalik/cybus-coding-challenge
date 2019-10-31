@@ -9,7 +9,7 @@ import {
   ON_SORT,
 } from './types';
 
-const initialState = {
+export const initialState = {
   isLoggedIn: false,
   userName: '',
   currentTab: 'images',
@@ -60,6 +60,9 @@ export default createReducer(initialState, {
     };
   },
   [ON_SORT]: (state, { payload: { tab, key } }) => {
+    if (!tab || !key || !state[tab]) {
+      return state;
+    }
     const sortedData = state[tab].sort(sortByKey(key));
 
     return {

@@ -1,21 +1,13 @@
 import React from 'react';
-import { filterObj } from '../utilities';
+import { getActionKeys } from '../utilities';
 
 export default function Actions({ item, index, updateStore }) {
-  const actions = {
-    remove: 'res/actions/remove.svg',
-    restart: 'res/actions/restart.svg',
-    stop: 'res/actions/stop.svg',
-    start: 'res/actions/start.svg',
-  };
-  const getActionKeys = (actions, status) => {
-    if (status === 'dead') {
-      return ['remove'];
-    }
-    const keysForRemove = status === 'up' ? 'start' : 'stop';
-    const getObj = filterObj(actions, keysForRemove);
-    return Object.keys(getObj);
-  };
+  const path = 'res/actions/';
+  const actions = ['remove', 'restart', 'stop', 'start'].reduce((a, b) => {
+    a[b] = `${path + b}.svg`;
+    return a;
+  }, {});
+
   return (
     <div className="actions">
       {getActionKeys(actions, item.status).map(key => (

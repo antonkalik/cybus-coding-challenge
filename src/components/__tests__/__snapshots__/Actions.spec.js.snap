@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Actions /> test should show 3 actions 1`] = `ShallowWrapper {}`;
+
+exports[`<Actions /> test should show only remove action 1`] = `ShallowWrapper {}`;
