@@ -1,4 +1,11 @@
-import { UPDATE_STORE, RESET_STORE, UPDATE_CONTAINER, UPDATE_TAB, REMOVE_CONTAINER } from './types';
+import {
+  UPDATE_STORE,
+  RESET_STORE,
+  UPDATE_CONTAINER,
+  UPDATE_TAB,
+  REMOVE_CONTAINER,
+  ON_SORT,
+} from './types';
 
 export const actionUpdateStore = (payload = {}) => {
   return {
@@ -32,5 +39,15 @@ export const actionRemoveContainer = id => {
   return {
     type: REMOVE_CONTAINER,
     id,
+  };
+};
+
+export const actionOnSort = (key, tab) => {
+  return {
+    type: ON_SORT,
+    payload: {
+      tab,
+      key,
+    },
   };
 };

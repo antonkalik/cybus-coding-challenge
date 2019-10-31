@@ -1,15 +1,24 @@
-import { fakeData } from './fakeData';
-import { createReducer } from '../utilities';
-import { RESET_STORE, UPDATE_STORE, UPDATE_CONTAINER, UPDATE_TAB, REMOVE_CONTAINER } from './types';
+import { fakeData, headers } from './fakeData';
+import { createReducer, sortByKey } from '../utilities';
+import {
+  RESET_STORE,
+  UPDATE_STORE,
+  UPDATE_CONTAINER,
+  UPDATE_TAB,
+  REMOVE_CONTAINER,
+  ON_SORT,
+} from './types';
 
 const initialState = {
   isLoggedIn: false,
   userName: '',
   currentTab: 'images',
   ...fakeData,
+  headers,
   search: '',
   modal: false,
   shareData: {},
+  sorted: true,
 };
 
 export default createReducer(initialState, {
@@ -48,6 +57,15 @@ export default createReducer(initialState, {
     return {
       ...state,
       containers: state.containers.filter(it => it.id !== id),
+    };
+  },
+  [ON_SORT]: (state, { payload: { tab, key } }) => {
+    const sortedData = state[tab].sort(sortByKey(key));
+
+    return {
+      ...state,
+      [tab]: state.sorted ? sortedData.reverse() : sortedData,
+      sorted: !state.sorted,
     };
   },
 });

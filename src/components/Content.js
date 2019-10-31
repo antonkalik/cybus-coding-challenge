@@ -1,23 +1,32 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
-import { actionUpdateStore } from '../redux/actions';
+import { actionUpdateStore, actionOnSort } from '../redux/actions';
 import { connect } from 'react-redux';
-import { Actions } from './index';
-const headers = {
-  images: ['Repository', 'ID', 'Tag', 'Created', 'Size'],
-  containers: ['Container ID', 'Image', 'Created', 'Status', 'Names', 'Actions'],
-};
+import { capitalize } from '../utilities';
+import { Actions } from '.';
 
-function Content({ store, currentTab, updateStore }) {
+function Content({ store, currentTab, updateStore, onSort }) {
   const tabData = store[currentTab];
+  const isContainers = currentTab === 'containers';
 
   return (
     <div className="content">
       <div className="table">
         <div className="header">
-          {headers[currentTab].map(it => (
-            <div key={it}>{it}</div>
+          {store.headers[currentTab].map(it => (
+            <div key={it}>
+              {it}
+              <span>
+                <img
+                  onClick={() => onSort(it, currentTab)}
+                  width="12px"
+                  src="res/sort.svg"
+                  alt="not found"
+                />
+              </span>
+            </div>
           ))}
+          {isContainers && <div>Actions</div>}
         </div>
         {tabData.length > 0 ? (
           tabData.map((item, index) => (
@@ -25,15 +34,13 @@ function Content({ store, currentTab, updateStore }) {
               {Object.keys(item).map(key => (
                 <div key={key}>{item[key]}</div>
               ))}
-              {currentTab === 'containers' && (
-                <Actions item={item} index={index} updateStore={updateStore} />
-              )}
+              {isContainers && <Actions item={item} index={index} updateStore={updateStore} />}
             </div>
           ))
         ) : (
           <div className="not-found-results">
             <img src="res/not_found.svg" alt="not found" />
-            <p>{currentTab} not found.</p>
+            <p>{capitalize(currentTab)} not found.</p>
           </div>
         )}
       </div>
@@ -48,6 +55,7 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => {
   return {
     updateStore: bindActionCreators(actionUpdateStore, dispatch),
+    onSort: bindActionCreators(actionOnSort, dispatch),
   };
 };
 

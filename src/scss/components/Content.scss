@@ -10,11 +10,15 @@
       display: flex;
       > div {
         flex: 1;
-        color: lighten($black, 30);
+        color: $mid-gray;
         &:last-child {
           text-align: right;
         }
         padding: 10px;
+        img {
+          padding-left: 3px;
+          cursor: pointer;
+        }
       }
     }
     .row {
@@ -48,6 +52,9 @@
       align-items: center;
       justify-content: center;
       height: 200px;
+      img {
+        padding-bottom: 10px;
+      }
     }
   }
 }

@@ -81,3 +81,8 @@ export const fakeData = {
     },
   ],
 };
+
+export const headers = {
+  images: Object.keys(fakeData.images[0]),
+  containers: Object.keys(fakeData.containers[0]),
+};

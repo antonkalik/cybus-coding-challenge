@@ -24,3 +24,5 @@ export const filterObj = (obj, k) =>
     }, {});
 
 export const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
+
+export const sortByKey = key => (a, b) => (a[key] > b[key] ? 1 : -1);
