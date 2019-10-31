@@ -26,7 +26,7 @@ export const filterObj = (obj, k) =>
 export const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
 
 export const getActionKeys = (actions, status) => {
-  if (!actions || status === 'dead') {
+  if (!actions || status === 'dead' || status === 'removing...') {
     return ['remove'];
   }
   const keysForRemove = status === 'up' ? 'start' : 'stop';
