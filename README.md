@@ -12,3 +12,9 @@ Online: https://cybusdock.netlify.com
 `npm run dev`
 3. To run production:<br>
 `npm run start`
+
+#### Tests and Lint
+1. To run tests:<br>
+`npm run test`
+2. To run lint:<br>
+`npm run lint`
